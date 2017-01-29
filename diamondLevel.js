@@ -1,5 +1,5 @@
 const levelUp = require('level')
-const utils = require('DiamondDB').utilities
+const utils = require('diamond-db').utilities
 
 const {
   UPDATE_META,
