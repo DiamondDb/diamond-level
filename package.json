@@ -1,8 +1,8 @@
 {
-  "name": "DiamondLevel",
+  "name": "diamond-level",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "LevelDB persistence module for DiamondDB",
+  "main": "diamondLevel.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

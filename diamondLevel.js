@@ -1,5 +1,5 @@
 const levelUp = require('level')
-const utils = require('diamond-db').utilities
+const utils = require('diamond-core')
 
 const {
   UPDATE_META,
@@ -32,7 +32,7 @@ module.exports = class DiamondLevel {
   initialize(){
     return this.get(this.tableKey).then(tableString => {
       if(tableString.length){
-        const tables = utils.schemaUtils.parseMeta(tableString)
+        const tables = utils.tableUtils.parseTableString(tableString)
         return success(tables)
       }
     })
@@ -42,7 +42,7 @@ module.exports = class DiamondLevel {
     if(tables){
       let meta = ''
       Object.keys(tables).forEach(tableName => {
-        meta += utils.schemaUtils.makeTableString(tables[tableName])
+        meta += utils.tableUtils.makeTableString(tables[tableName])
       })
       return this.put(this.tableKey, meta)
     } else {
@@ -50,7 +50,7 @@ module.exports = class DiamondLevel {
     }
   }
   makeTable({ tableData }){
-    const tableString = utils.schemaUtils.makeTableString(tableData)
+    const tableString = utils.tableUtils.makeTableString(tableData)
     return this.get(this.tableKey)
     .then(tables => {
       const updatedString = tables + tableString
